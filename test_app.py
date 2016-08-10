@@ -10,7 +10,8 @@ class FlaskAppTestCase(unittest.TestCase):
 
     def test_index_route(self):
         assert self.app.get('/')._status_code == 200
-        assert self.app.get('/').data == "Hello, World"
+        assert '<!DOCTYPE html>' in self.app.get('/').data
+
 
 if __name__ == "__main__":
     unittest.main()
