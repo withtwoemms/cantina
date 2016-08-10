@@ -1,12 +1,9 @@
-from __future__ import print_function
-
 import json
 import os
 import requests
-import sys
 
 from settings import configs
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, render_template, request
 
 
 env = os.environ.get('FLASK_APP_ENV', 'default')
@@ -36,7 +33,7 @@ def outside(posts, num):
     return json.dumps({
         'url': url,
         'status': response.status_code,
-        'response': response.json(),
+        'posts': response.json(),
     })
 #---------------------------------->>>
 
