@@ -12,6 +12,9 @@ class FlaskAppTestCase(unittest.TestCase):
         assert self.app.get('/')._status_code == 200
         assert '<!DOCTYPE html>' in self.app.get('/').data
 
+    def test_hello_route(self):
+        assert self.app.get('/hello').data == "Hello, World"
+
 
 if __name__ == "__main__":
     unittest.main()
