@@ -1,11 +1,14 @@
+APP_FILE := cantina.py
 TEST_FILE := test_app.py
 
+
+$(eval export FLASK_APP=$(APP_FILE))
 
 all: 
 	@echo "FLASK APP -->" ${FLASK_APP}
 	@echo "FLASK ENV -->" ${FLASK_APP_ENV}
 
-test: 
+test:
 	$(eval export FLASK_APP_ENV=test)
 	@echo "CURRENT_ENV -->" ${FLASK_APP_ENV}
 	python $(TEST_FILE)

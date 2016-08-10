@@ -8,7 +8,7 @@ class ProdConfig(BaseConfig):
 
 class DevConfig(BaseConfig):
     DEBUG = True
-    SERVER_NAME = ':8765'
+    SERVER_NAME = '127.0.0.1:8765'
 
 class TestConfig(BaseConfig):
     TESTING = True
