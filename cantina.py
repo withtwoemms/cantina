@@ -4,7 +4,7 @@ from settings import configs
 from flask import Flask
 
 
-env = os.environ.get('FLASK_APP_CONFIG', 'default')
+env = os.environ.get('FLASK_APP_ENV', 'default')
 app = Flask(__name__)
 
 #-- CONFIG -------------------------->>>
