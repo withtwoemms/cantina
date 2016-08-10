@@ -1,5 +1,5 @@
 APP_FILE := cantina.py
-TEST_FILE := test_app.py
+TEST_FILE := cantina_test.py
 
 
 $(eval export FLASK_APP=$(APP_FILE))
