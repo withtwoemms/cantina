@@ -1,9 +1,12 @@
+from __future__ import print_function
+
 import json
 import os
 import requests
+import sys
 
 from settings import configs
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 
 
 env = os.environ.get('FLASK_APP_ENV', 'default')
@@ -22,15 +25,20 @@ def index():
 def hello():
     return "Hello, World"
 
-@app.route('/outside', methods=['GET'])
-def outside():
-    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+@app.route('/outside/<posts>', defaults={'num': None}, methods=['GET'])
+@app.route('/outside/<posts>/<int:num>', methods=['GET'])
+def outside(posts, num):
+    if posts == 'posts':
+        url = 'https://jsonplaceholder.typicode.com/{}'.format(posts)
+    if posts == 'posts' and num:
+        url = 'https://jsonplaceholder.typicode.com/{}/{}'.format(posts, num)
+    response = requests.get(url)
     return json.dumps({
-        'url': 'https://jsonplaceholder.typicode.com/posts',
+        'url': url,
         'status': response.status_code,
-        'response': response.content,
+        'response': response.json(),
     })
-#----------------------------------->>>
+#---------------------------------->>>
 
 
 if __name__ == '__main__':
